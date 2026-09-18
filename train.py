@@ -209,15 +209,6 @@ def main(args):
         model.load_state_dict(state_dict)
         logger.info(f"成功加载预训练权重")
 
-    # 冻结骨干层
-    if args.freeze_layers:
-        frozen_params = 0
-        for name, param in model.named_parameters():
-            if "backbone" in name:  # 根据实际结构调整
-                param.requires_grad_(False)
-                frozen_params += 1
-        logger.info(f"冻结了 {frozen_params} 个骨干层参数")
-
     # 优化器和学习率调度器
     optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
 
@@ -454,12 +445,10 @@ if __name__ == '__main__':
     parser.add_argument('--lr', type=float, default=5e-5, help="Initial learning rate")
     parser.add_argument('--min_lr', type=float, default=1e-7, help="Minimum learning rate")
     parser.add_argument('--wd', type=float, default=5e-3, help="Weight decay")
-    parser.add_argument('--data-path', type=str, default=r"C:\AID30\AID30",
+    parser.add_argument('--data-path', type=str, default=r"AID30",
                         help="Path to dataset directory")
     parser.add_argument('--weights', type=str, default='',
                         help="Path to pretrained weights (optional)")
-    parser.add_argument('--freeze-layers', type=bool, default=False,
-                        help="Freeze SMPAN backbone")
     parser.add_argument('--device', default='cuda:0', help="Training device (cuda:0 or cpu)")
     parser.add_argument('--img-h', type=int, default=256, help="Input image height")
     parser.add_argument('--img-w', type=int, default=256, help="Input image width")
