@@ -251,7 +251,7 @@ def main(args):
 
     # 生成统一的时间戳（确保权重和Excel使用相同时间戳）
     timestamp = time.strftime("%Y%m%d_%H%M%S", time.localtime())
-    network_name = "net6_wo_ss_guidance"
+    network_name = "SMPAN"
     # 定义统一的基础文件名（与Excel保持一致）
     base_filename = f"{network_name}_{timestamp}_{args.epochs}epochs"
 
