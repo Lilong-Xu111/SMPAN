@@ -447,7 +447,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Train MSCNet model for classification with RandAugment and Mixup")
+    parser = argparse.ArgumentParser(description="Train SMPAN for remote sensing scene classification")
     parser.add_argument('--num_classes', type=int, default=30, help="Number of classification classes")
     parser.add_argument('--epochs', type=int, default=100, help="Training epochs")
     parser.add_argument('--batch-size', type=int, default=32, help="Batch size (adjust based on GPU memory)")
